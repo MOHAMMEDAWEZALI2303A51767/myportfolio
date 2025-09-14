@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Factory Pattern Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    #shapeContainer {
+      width: 300px; height: 250px;
+      border: 1px solid #ccc;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .shape { display: inline-block; }
+    .circle { width: 80px; height: 80px; background: lightblue; border: 2px solid black; border-radius: 50%; }
+    .square { width: 80px; height: 80px; background: lightgreen; border: 2px solid black; }
+    .triangle { width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 90px solid pink; }
+    button { padding: 10px 15px; margin-right: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Factory Pattern Demo</h2>
+  <p><b>Factory Method:</b> Creates objects without exposing creation logic.</p>
+  <div id="shapeContainer"></div>
+  <button onclick="createShape('circle')">Create Circle</button>
+  <button onclick="createShape('square')">Create Square</button>
+  <button onclick="createShape('triangle')">Create Triangle</button>
+  <button onclick="goBack()">🔙 Back to Menu</button>
+
+  <script>
+    function createShape(type) {
+      const container = document.getElementById("shapeContainer");
+      container.innerHTML = "";
+      let shape;
+      switch (type) {
+        case "circle": shape = document.createElement("div"); shape.className = "shape circle"; break;
+        case "square": shape = document.createElement("div"); shape.className = "shape square"; break;
+        case "triangle": shape = document.createElement("div"); shape.className = "shape triangle"; break;
+      }
+      container.appendChild(shape);
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

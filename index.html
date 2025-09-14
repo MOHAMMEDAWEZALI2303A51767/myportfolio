@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Patterns Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      margin-bottom: 40px;
+      color: #333;
+    }
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .card {
+      width: 220px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      text-decoration: none;
+      color: #333;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #fafafa;
+    }
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #0077cc;
+    }
+    .card p {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Design Patterns Demo</h1>
+  <div class="menu">
+    <a href="singleton.html" class="card">
+      <h2>🌀 Singleton Pattern</h2>
+      <p>Ensure only one instance exists</p>
+    </a>
+    <a href="factory.html" class="card">
+      <h2>🏭 Factory Pattern</h2>
+      <p>Create shapes dynamically</p>
+    </a>
+    <a href="builder.html" class="card">
+      <h2>🍔 Builder Pattern</h2>
+      <p>Step by step burger creation</p>
+    </a>
+    <a href="prototype.html" class="card">
+      <h2>🤖 Prototype Pattern</h2>
+      <p>Clone robots easily</p>
+    </a>
+  </div>
+</body>
+</html>

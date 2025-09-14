@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Builder Pattern Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    #burgerContainer { border: 1px solid #ddd; padding: 15px; margin-top: 20px; }
+    #ingredients { list-style: none; padding: 0; }
+    #ingredients li { margin-bottom: 5px; font-size: 16px; }
+    .bun::before { content: "🍞 "; }
+    .patty::before { content: "🥩 "; }
+    .cheese::before { content: "🧀 "; }
+    .lettuce::before { content: "🥬 "; }
+    button { margin-right: 10px; margin-bottom: 10px; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Builder Pattern Demo</h2>
+  <p><b>Builder:</b> Construct complex objects step by step.</p>
+  <button onclick="addIngredient('bun')">Add Bun</button>
+  <button onclick="addIngredient('patty')">Add Patty</button>
+  <button onclick="addIngredient('cheese')">Add Cheese</button>
+  <button onclick="addIngredient('lettuce')">Add Lettuce</button>
+  <button onclick="finishBurger()">Finish Burger ✅</button>
+  <button onclick="goBack()">🔙 Back to Menu</button>
+  <div id="burgerContainer">
+    <h3>Your Final Burger:</h3>
+    <ul id="ingredients"></ul>
+  </div>
+
+  <script>
+    const BurgerBuilder = { ingredients: [], addIngredient(i){this.ingredients.push(i);}, reset(){this.ingredients=[];} };
+    function addIngredient(type) {
+      BurgerBuilder.addIngredient(type);
+      const list = document.getElementById("ingredients");
+      const li = document.createElement("li");
+      li.className = type;
+      li.textContent = type.charAt(0).toUpperCase()+type.slice(1);
+      list.appendChild(li);
+    }
+    function finishBurger(){ alert("Burger completed! 🍔"); }
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

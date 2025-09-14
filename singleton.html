@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Singleton Pattern Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .log-box { border: 1px solid #ccc; padding: 10px; margin-top: 10px; height: 150px; overflow-y: auto; }
+    button { margin: 5px; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Singleton Pattern Demo</h2>
+  <p><b>Singleton ensures only one instance exists.</b></p>
+  
+  <button onclick="createLogger()">Create Logger Instance</button>
+  <button onclick="logMessage()">Add Log Message</button>
+  <button onclick="goBack()">🔙 Back to Menu</button>
+
+  <div class="log-box" id="output"></div>
+
+  <script>
+    const Logger = (function () {
+      let instance;
+      function createInstance() {
+        const logs = [];
+        return {
+          addLog: function (msg) {
+            logs.push(msg);
+            displayLogs(logs);
+          },
+          getLogs: function () {
+            return logs;
+          }
+        };
+      }
+      return {
+        getInstance: function () {
+          if (!instance) {
+            instance = createInstance();
+            displayOutput("✅ New Logger instance created");
+          } else {
+            displayOutput("⚠️ Using existing Logger instance");
+          }
+          return instance;
+        }
+      };
+    })();
+
+    let logger;
+
+    function createLogger() {
+      logger = Logger.getInstance();
+    }
+
+    function logMessage() {
+      if (!logger) {
+        displayOutput("❌ Please create a Logger instance first!");
+        return;
+      }
+      const msg = "Log entry at " + new Date().toLocaleTimeString();
+      logger.addLog(msg);
+    }
+
+    function displayLogs(logs) {
+      const out = document.getElementById("output");
+      out.innerHTML = "<b>Logger Entries:</b><br>" + logs.join("<br>");
+    }
+
+    function displayOutput(msg) {
+      const out = document.getElementById("output");
+      out.innerHTML += msg + "<br>";
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

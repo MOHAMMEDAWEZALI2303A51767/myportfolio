@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prototype Pattern Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    #robotsContainer { border: 1px solid #ddd; padding: 15px; margin-top: 20px; }
+    .robot { margin-bottom: 5px; font-size: 15px; }
+    .robot::before { content: "🤖 "; }
+    button { margin-right: 10px; margin-bottom: 10px; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Prototype Pattern Demo</h2>
+  <p><b>Prototype:</b> Clone existing objects instead of creating from scratch.</p>
+  <button onclick="createBaseRobot()">Create Base Robot</button>
+  <button onclick="cloneRobot()">Clone Robot</button>
+  <button onclick="goBack()">🔙 Back to Menu</button>
+  <div id="robotsContainer">
+    <h3>Robots Created:</h3>
+    <div id="robotsList"></div>
+  </div>
+
+  <script>
+    let baseRobot = null, robotCount=0, cloneCount=0;
+    const weapons=["Shield","Sword","Laser"];
+
+    function createBaseRobot() {
+      robotCount++;
+      baseRobot={ name:"Robo-"+robotCount, type:"Defender", weapon:"Shield" };
+      displayRobot(baseRobot);
+    }
+
+    function cloneRobot() {
+      if(!baseRobot){ alert("Create a base robot first!"); return; }
+      cloneCount++;
+      const newRobot={...baseRobot};
+      newRobot.name="Clone-"+cloneCount;
+      newRobot.weapon=weapons[Math.floor(Math.random()*weapons.length)];
+      displayRobot(newRobot);
+    }
+
+    function displayRobot(robot) {
+      const div=document.createElement("div");
+      div.className="robot";
+      div.textContent=`${robot.name} | Type: ${robot.type} | Weapon: ${robot.weapon}`;
+      document.getElementById("robotsList").appendChild(div);
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
